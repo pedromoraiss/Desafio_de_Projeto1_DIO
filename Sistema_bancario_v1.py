@@ -20,12 +20,20 @@ while True:
 
       if opcao == 1:
 
+
             deposito_palavra = "Deposito"
             print(deposito_palavra.center(51, "="))
 
             deposito = float(input("\nInforme o valor desejado para depósito:     ")) # Solicita o valor do deposito ao usuario e adiciona na variavel deposito
-            saldo += deposito # Adiciona o valor depositado ao saldo da conta
-            extrato += f"\nDepósito realizado no valor de:     R$ {deposito:.2f}\n" # Registra as informações sobre os depositos realizados na variavel string
+
+            if deposito > 0:
+
+                  saldo += deposito # Adiciona o valor depositado ao saldo da conta
+                  extrato += f"\nDepósito realizado no valor de:     R$ {deposito:.2f}\n" # Registra as informações sobre os depositos realizados na variavel string
+
+            else:
+                  print("\nOperação falhou! O valor informado é inválido")
+
 
       elif opcao == 2:
 
@@ -34,18 +42,22 @@ while True:
 
             saque = float(input("\nInforme a quantia até R$ 500 que deseja sacar: ")) # Solicita o valor do saqueao usuario e adiciona na variavel saque
 
-            if saque > 500: 
-                  print("Não foi possível realizar o saque. O limite máximo para saque é de R$ 500") # Se o saque solicitado for maior que 500 aparecerá esta mensagem
-            elif saque > saldo:
-                  print("Não será possível sacar o dinheiro por falta de saldo.") # Se o saque solicitado for maior que o saldo aparecerá esta mensagem
-            elif quantidade_de_saque < 3:
+            if saque > 0:
 
-                  quantidade_de_saque += 1 # Será adicionado +1 à variavel quantidade_de_saque toda vez que uma saque for realizado
-                  saldo -= saque # Será descontado do saldo atual o saque solicitado 
-                  extrato += f"\nSaque realizado no valor de:     R$ {saque:.2f}\n" # Registra as informações sobre os saques realizados na variavel string
+                  if saque > 500: 
+                        print("Não foi possível realizar o saque. O limite máximo para saque é de R$ 500") # Se o saque solicitado for maior que 500 aparecerá esta mensagem
+                  elif saque > saldo:
+                        print("Não será possível sacar o dinheiro por falta de saldo.") # Se o saque solicitado for maior que o saldo aparecerá esta mensagem
+                  elif quantidade_de_saque < 3:
 
+                        quantidade_de_saque += 1 # Será adicionado +1 à variavel quantidade_de_saque toda vez que uma saque for realizado
+                        saldo -= saque # Será descontado do saldo atual o saque solicitado 
+                        extrato += f"\nSaque realizado no valor de:     R$ {saque:.2f}\n" # Registra as informações sobre os saques realizados na variavel string
+
+                  else:
+                        print("\nNão é possível realizar mais do que 3 saques no dia!") # Caso ultrapasse a quantidade de saques permitidos será mostrado essa frase
             else:
-                  print("\nNão é possível realizar mais do que 3 saques no dia!") # Caso ultrapasse a quantidade de saques permitidos será mostrado essa frase
+                  print("\nOperação falhou! O valor informado é inválido")
 
       elif opcao == 3:
 
